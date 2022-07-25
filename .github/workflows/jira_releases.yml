@@ -11,7 +11,7 @@ jobs:
     - name: Jira Login
       uses: atlassian/gajira-login@v2.0.0
       env:
-        JIRA_BASE_URL: https://prashantb02.atlassian.net
+        JIRA_BASE_URL: https://pulkitsamrat.atlassian.net
         JIRA_USER_EMAIL: pulkit155rkgit@gmail.com
         JIRA_API_TOKEN: 9kbRaW4pdWhNdwI7E3Ms9DBE
         
