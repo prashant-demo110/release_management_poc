@@ -12,7 +12,7 @@ jobs:
       uses: atlassian/gajira-login@master
       env:
         JIRA_BASE_URL: https://prashantb02.atlassian.net
-        JIRA_USER_EMAIL: prashant.bh02@gmail.com
+        JIRA_USER_EMAIL: pulkit155rkgit@gmail.com
         JIRA_API_TOKEN: ${{secrets.JIRA_RELEASES}}
         
     - name: Extract version name
