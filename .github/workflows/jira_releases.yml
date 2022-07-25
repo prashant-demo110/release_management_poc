@@ -26,7 +26,7 @@ jobs:
         domain: https://prashantb02.atlassian.net
         project: HA
         version: Customer Version ${{ steps.extract_version_name.outputs.version }}
-        auth-token: ${{secrets.JIRA_RELEASES}}
+#       auth-token: ${{secrets.JIRA_RELEASES}}
         
     - name: Print New Version
       run: echo ${{ steps.release.outputs.new-version }}
