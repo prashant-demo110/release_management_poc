@@ -6,3 +6,4 @@ This is a POC for Map Jira issues to releases management from Github.
 4
 5
 6
+7
