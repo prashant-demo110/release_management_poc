@@ -21,12 +21,12 @@ jobs:
       
     - name: Jira Release
       id: release
-      uses: atlassian/gajira-login@master
+      uses: PRNDcompany/jira-release@v1.2
       with:
         domain: https://prashantb02.atlassian.net
         project: HA
         version: Customer Version ${{ steps.extract_version_name.outputs.version }}
-#       auth-token: ${{secrets.JIRA_RELEASES}}
+        auth-token: Xg8jIuOjfOe43WW5F9KH9288
         
     - name: Print New Version
       run: echo ${{ steps.release.outputs.new-version }}
