@@ -21,7 +21,7 @@ jobs:
       
     - name: Jira Release
       id: release
-#      uses: PRNDcompany/jira-release@v1.2
+      uses: atlassian/gajira-login@master
       with:
         domain: https://prashantb02.atlassian.net
         project: HA
