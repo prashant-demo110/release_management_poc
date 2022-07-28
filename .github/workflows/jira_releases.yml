@@ -27,6 +27,9 @@ jobs:
         project: 'HA'
         version: Customer Version ${{ steps.extract_version_name.outputs.version }}
         auth-token: 'L3SSmrUWOR6DEGzsDQ6D8B1E'
+    - name: Print New Version
+      run: |
+        echo ${{ steps.release.outputs.new-version }}
         
     - name: Print New Version
       run: echo ${{ steps.release.outputs.new-version }}
