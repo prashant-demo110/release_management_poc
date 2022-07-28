@@ -26,7 +26,7 @@ jobs:
         domain: 'https://prashantb02.atlassian.net'
         project: 'HA'
         version: Customer ${{ steps.extract_version_name.outputs.version }}
-        auth-token: ${{secrets.PULKIT}}
+        auth-token: 'YXJqdW5kaGluZ3JhMjlAZ21haWwuY29tOnRSMFlielNBTWdhaGlXamNEcjVjN0MxRg=='
     
     - name: Print New Version
       run: |
