@@ -24,7 +24,7 @@ jobs:
       uses: PRNDcompany/jira-release@v1.2
       with:
         domain: 'https://prashantb02.atlassian.net'
-        project: 'HA'
+        project: 'APISERO'
         version: ${{ steps.extract_version_name.outputs.version }}
         auth-token: 'YXJqdW5kaGluZ3JhMjlAZ21haWwuY29tOnRSMFlielNBTWdhaGlXamNEcjVjN0MxRg=='
     
