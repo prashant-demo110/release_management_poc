@@ -1,0 +1,31 @@
+name: Forward release notes
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  release-notes:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+
+    - name: Jira Login
+      uses: atlassian/gajira-login@master
+      env:
+        JIRA_BASE_URL: https://prashantb02.atlassian.net
+        JIRA_USER_EMAIL: pulkit155rkgit@gmail.com
+        JIRA_API_TOKEN: ${{secrets.PULKIT}}
+
+    - name: Generate
+      uses: actions/jira-release-notes@v1.0.1
+      id: pdf_generator
+      with:
+        head: ${{github.event.pull_request.head.sha}}
+        base: ${{github.event.pull_request.base.sha}}
+        jira-code: 'HP'
+        jira-host: https://prashantb02.atlassian.net
+        jira-username: pulkit155rkgit@gmail.com
+        jira-password: ${{secrets.PULKIT}}
