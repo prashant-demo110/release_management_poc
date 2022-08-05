@@ -17,8 +17,8 @@ jobs:
           repo:  release_management_poc
       - name: Example of consumption of the output
         env:
-          LATEST: ${{ steps.latest_version.outputs.latest_tag }}
+          LATEST_TAG: ${{ steps.latest_version.outputs.latest_tag }}
+          LATEST_NAME: ${{ steps.latest_version.outputs.releaseName }}
           LATEST_DATE: ${{ steps.latest_version.outputs.latest_tag_published_at }}
         run: |
-          echo "Version $LATEST was released at $LATEST_DATE" 
-#        run: echo ${{steps.info.outputs.release_info}}
+          echo "Version $LATEST was released with release name as - $LATEST_NAME" 
