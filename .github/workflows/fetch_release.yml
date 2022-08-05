@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [HP-2]
+    branches: [main]
        
 name: get jira version tag
 jobs:
