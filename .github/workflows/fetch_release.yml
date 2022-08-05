@@ -13,8 +13,8 @@ jobs:
         id: latest_version
         uses: abatilo/release-info-action@v1.3.0
         with:
-          owner: amitbind13
-          repo:  jirareleaseversion
+          owner: prashant-demo110
+          repo:  release_management_poc
       - name: Example of consumption of the output
         env:
           LATEST: ${{ steps.latest_version.outputs.latest_tag }}
