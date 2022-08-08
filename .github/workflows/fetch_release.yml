@@ -15,9 +15,15 @@ jobs:
         with:
           owner: prashant-demo110
           repo: release_management_poc 
-      - name: Example of consumption of the output
-        env:
-          LATEST: ${{ steps.latest_version.outputs.latest_tag }}
-          LATEST_DATE: ${{ steps.latest_version.outputs.latest_tag_published_at }}
+            release_json=$(curl https://api.github.com/repos/$owner/$repo/releases)
+            Release_tag=$(echo "$release_json" | jq -r '.[0].tag_name')
+            Release_name=$(echo "$release_json" | jq -r '.[0].name')
+            Body=$(echo "$release_json" | jq -r '.[0].body')
+            Released_date=$(echo "$release_json" | jq -r '.[0].published_at')
+            Commit_branch_name=$(echo "$release_json" | jq -r '.[0].target_commitish')
         run: |
-          echo "Version $LATEST was released at $LATEST_DATE"
+          echo "Release_tag: Latest Tag is : $Release_tag"
+          echo "Release_name: Latest Release Tag Name is : $Release_name"
+          echo "Body: Latest Release Tag Body is : $Body"
+          echo "Released_date: Timings are : $Released_date"
+          echo "Commit_branch_name: Branch triggered : $Commit_branch_name"
