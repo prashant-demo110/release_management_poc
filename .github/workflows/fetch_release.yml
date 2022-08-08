@@ -9,13 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Get Latest Release
-        id: latest_version
+#      - name: Get Latest Release
+#        id: latest_version
 #        uses: abatilo/release-info-action@v1.3.0
+#        with:
+#          owner: prashant-demo110
+#          repo: release_management_poc 
+      - name: Example of consumption of the output        
         with:
           owner: prashant-demo110
-          repo: release_management_poc 
-      - name: Example of consumption of the output
+          repo: release_management_poc
             release_json=$(curl https://api.github.com/repos/$owner/$repo/releases)
             Release_tag=$(echo "$release_json" | jq -r '.[0].tag_name')
             Release_name=$(echo "$release_json" | jq -r '.[0].name')
