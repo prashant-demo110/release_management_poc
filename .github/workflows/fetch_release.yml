@@ -16,10 +16,6 @@ jobs:
           owner: prashant-demo110
           repo: release_management_poc
       - name: Example of consumption of the output
-        env:
-          LATEST: ${{ steps.latest_version.outputs.latest_tag }}
-          LATEST_DATE: ${{ steps.latest_version.outputs.latest_tag_published_at }}
-
         run: |
           owner="prashant-demo110"
           repo="release_management_poc"
