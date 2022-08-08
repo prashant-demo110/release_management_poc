@@ -11,20 +11,19 @@ jobs:
       - uses: actions/checkout@master
       - name: Get Latest Release
         id: latest_version
-        uses: prashant-demo110/release_management_poc@main
+        uses: abatilo/release-info-action@v1.3.0
         with:
           owner: prashant-demo110
-          repo: release_management_poc 
-      - name: Example of consumption of the output        
-        with:
-          owner: prashant-demo110
-          repo: release_management_poc
-            release_json=$(curl https://api.github.com/repos/$owner/$repo/releases)
-            Release_tag=$(echo "$release_json" | jq -r '.[0].tag_name')
-            Release_name=$(echo "$release_json" | jq -r '.[0].name')
-            Body=$(echo "$release_json" | jq -r '.[0].body')
-            Released_date=$(echo "$release_json" | jq -r '.[0].published_at')
-            Commit_branch_name=$(echo "$release_json" | jq -r '.[0].target_commitish')
+          repo:  release_management_poc
+      - name: Example of consumption of the output
+        env:
+          release_json=$(curl https://api.github.com/repos/$owner/$repo/releases)
+          Release_tag=$(echo "$release_json" | jq -r '.[0].tag_name')
+          Release_name=$(echo "$release_json" | jq -r '.[0].name')
+          Body=$(echo "$release_json" | jq -r '.[0].body')
+          Released_date=$(echo "$release_json" | jq -r '.[0].published_at')
+          Commit_branch_name=$(echo "$release_json" | jq -r '.[0].target_commitish')
+  
         run: |
           echo "Release_tag: Latest Tag is : $Release_tag"
           echo "Release_name: Latest Release Tag Name is : $Release_name"
