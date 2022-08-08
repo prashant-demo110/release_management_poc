@@ -15,6 +15,7 @@ jobs:
         with:
           owner: prashant-demo110
           repo: release_management_poc 
+      - name: Example of consumption of the output
             release_json=$(curl https://api.github.com/repos/$owner/$repo/releases)
             Release_tag=$(echo "$release_json" | jq -r '.[0].tag_name')
             Release_name=$(echo "$release_json" | jq -r '.[0].name')
