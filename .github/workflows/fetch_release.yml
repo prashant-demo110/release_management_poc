@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-#      - name: Get Latest Release
-#        id: latest_version
-#        uses: abatilo/release-info-action@v1.3.0
-#        with:
-#          owner: prashant-demo110
-#          repo: release_management_poc 
+      - name: Get Latest Release
+        id: latest_version
+        uses: prashant-demo110/release_management_poc@main
+        with:
+          owner: prashant-demo110
+          repo: release_management_poc 
       - name: Example of consumption of the output        
         with:
           owner: prashant-demo110
