@@ -30,3 +30,9 @@ jobs:
           echo "Body: Latest Release Tag Body is : $Body"
           echo "Released_date: Timings are : $Released_date"
           echo "Commit_branch_name: Branch triggered : $Commit_branch_name"
+          
+          echo ::set-output name=Release_tag::"$Release_tag"
+          echo ::set-output name=Release_name::"$Release_name"
+          echo ::set-output name=Body::"$Body"
+          echo ::set-output name=Released_date::"$Released_date"
+          echo ::set-output name=Commit_branch_name::"$Commit_branch_name"
