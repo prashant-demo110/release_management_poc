@@ -51,7 +51,7 @@ jobs:
           project_name="HP"
           host_url="prashantb02.atlassian.net"
           jira_body=$(curl https://$host_url/rest/api/3/project/$project_name)
-          Tag_name_from_jira=$(echo "$jira_body" | jq -r '.[0].versions.[0].name')
+          Tag_name_from_jira=$(echo "$jira_body" | jq -r '[0].versions.[0].name')
 
 
           echo "Tag_name_from_jira: Tag number from Jira is : $Tag_name_from_jira"
