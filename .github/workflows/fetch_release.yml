@@ -15,6 +15,14 @@ jobs:
         with:
           owner: prashant-demo110
           repo: release_management_poc
+      - name: Jira Login
+        uses: atlassian/gajira-login@master
+        env:
+          JIRA_BASE_URL: https://prashantb02.atlassian.net
+          JIRA_USER_EMAIL: pulkit155rkgit@gmail.com
+          JIRA_API_TOKEN: ${{secrets.PULKIT}}
+
+
       - name: Example of consumption of the output
         run: |
           owner="prashant-demo110"
@@ -38,3 +46,15 @@ jobs:
           echo ::set-output name=Body::"$Body"
           echo ::set-output name=Released_date::"$Released_date"
           echo ::set-output name=Commit_branch_name::"$Commit_branch_name"
+
+
+          project_name="HP"
+          host_url="prashantb02.atlassian.net"
+          jira_body=$(curl https://$host_url/rest/api/3/project/$project_name)
+          Tag_name_from_jira=$(echo "$jira_body" | jq -r '.[0].versions.name')
+
+
+          echo "Tag_name_from_jira: Tag number from Jira is : $Tag_name_from_jira"
+
+
+          echo ::set-output name=Tag_name_from_jira::"$Tag_name_from_jira"
