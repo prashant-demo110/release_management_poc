@@ -36,7 +36,7 @@ jobs:
           Body=$(echo "$release_json" | jq -r '.[0].body')
           Released_date=$(echo "$release_json" | jq -r '.[0].published_at')
           Commit_branch_name=$(echo "$release_json" | jq -r '.[0].target_commitish')
-          Tag_name_from_jira=$(echo "$jira_body" | jq -r '.versions[name]')
+          Tag_name_from_jira=$(echo "$jira_body" | jq -r '.versions.name')
 
 
           echo "Release_tag: Latest Tag is : $Release_tag"
