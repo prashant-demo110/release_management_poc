@@ -25,7 +25,7 @@
             host_url="prashantb02.atlassian.net"
             release_json=$(curl https://api.github.com/repos/$owner/$repo/releases)
             
-            jira_body=$(curl https://prashantb02.atlassian.net/rest/api/3/project/RD/versions -u "pulkit155rkgit@gmail.com:kyWpMN7nSRnZHwZMKz1UF9E0")
+            jira_body=$(curl https://prashantb02.atlassian.net/rest/api/3/project/RD/versions -u "pulkit155rkgit@gmail.com:kyWpMN7nSRnZHwZMKz1UF9E0" | join(", ")) | join("\n"))
             
             Release_tag=$(echo "$release_json" | jq -r '.[0].tag_name')
             Release_name=$(echo "$release_json" | jq -r '.[0].name')
