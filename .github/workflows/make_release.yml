@@ -42,6 +42,6 @@ jobs:
           echo ::set-output name=Body::"$Body"
           echo ::set-output name=Released_date::"$Released_date"
           echo ::set-output name=Commit_branch_name::"$Commit_branch_name"
-          
-          curl -X POST -H 'Content-type: application/json' --data "issues":["RD-5"], "data": {"releaseVersion":"v4.0.0"} https://automation.atlassian.com/pro/hooks/0539d97c488d25b325d53db2f4b0ff75d57520db
+          jira_body={"release_tag" : "$Release_tag"}
+          curl -X POST -H 'Content-type: application/json' --data "issues":["RD-5"], "data": {"releaseVersion":"jira_body.release_tag"} https://automation.atlassian.com/pro/hooks/0539d97c488d25b325d53db2f4b0ff75d57520db
           
