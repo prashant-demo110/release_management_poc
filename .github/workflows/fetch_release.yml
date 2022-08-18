@@ -9,12 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Get Latest Release
-        id: latest_version
-        uses: abatilo/release-info-action@v1.3.0
-        with:
-          owner: prashant-demo110
-          repo: release_management_poc
       - name: Jira Login
         uses: atlassian/gajira-login@master
         env:
@@ -49,5 +43,4 @@ jobs:
           echo ::set-output name=Released_date::"$Released_date"
           echo ::set-output name=Commit_branch_name::"$Commit_branch_name"
           
-          curl -X POST -H 'Content-type: application/json' --data "issues":["RD-5"], "data": {"releaseVersion":"$Release_tag"} https://automation.atlassian.com/pro/hooks/0539d97c488d25b325d53db2f4b0ff75d57520db
-          echo "{{data.releaseVersion}}"
+          curl -X POST -H 'Content-type: application/json' --data "issues":["RD-5"], "data": {"releaseVersion":"v4.0.0"} https://automation.atlassian.com/pro/hooks/0539d97c488d25b325d53db2f4b0ff75d57520db
