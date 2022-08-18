@@ -13,8 +13,8 @@
           uses: atlassian/gajira-login@master
           env:
             JIRA_BASE_URL: https://prashantb02.atlassian.net
-            JIRA_USER_EMAIL: pulkit155rkgit@gmail.com
-            JIRA_API_TOKEN: ${{secrets.PULKIT}}
+            JIRA_USER_EMAIL: amitkumarbind130207@gmail.com
+            JIRA_API_TOKEN: HHMHb7C0WQTXcdVwj80Z8C40
 
 
         - name: Example of consumption of the output
