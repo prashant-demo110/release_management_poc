@@ -1,54 +1,45 @@
-  on:
-    push:
-      branches: [main]
+on:
+  push:
+    branches: [main]
+name: Get Github Release Data
+jobs:
+  latest-version:
+    name: Get Latest Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login
+        uses: atlassian/gajira-login@master
+        env:
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_TOKEN }}
+      - uses: actions/checkout@master
+      - name: Get Latest Release
+        id: latest_version
+        uses: abatilo/release-info-action@v1.3.0
+        with:
+          owner: prashant-demo110
+          repo: release_management_poc
+      - name: Example of consumption of the output
+        run: |
+          owner="prashant-demo110"
+          repo="release_management_poc"
+          release_json=$(curl https://api.github.com/repos/$owner/$repo/releases)
+          Release_tag=$(echo "$release_json" | jq -r '.[0].tag_name')
+          Release_name=$(echo "$release_json" | jq -r '.[0].name')
+          Body=$(echo "$release_json" | jq -r '.[0].body')
+          Released_date=$(echo "$release_json" | jq -r '.[0].published_at')
+          Commit_branch_name=$(echo "$release_json" | jq -r '.[0].target_commitish')
 
-  name: get jira version tag
-  jobs:
-    latest-version:
-      name: Get Latest Release
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@master
-        - name: Jira Login
-          uses: atlassian/gajira-login@master
-          env:
-            JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
-            JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-            JIRA_API_TOKEN: ${{ secrets.JIRA_TOKEN }}
 
+          echo "Release_tag: Latest Tag is : $Release_tag"
+          echo "Release_name: Latest Release Tag Name is : $Release_name"
+          echo "Body: Latest Release Tag Body is : $Body"
+          echo "Released_date: Timings are : $Released_date"
+          echo "Commit_branch_name: Branch triggered : $Commit_branch_name"
 
-        - name: Example of consumption of the output
-          run: |
-            owner="prashant-demo110"
-            repo="release_management_poc"
-            project_name="HP"
-            host_url="prashantb02.atlassian.net"
-            release_json=$(curl https://api.github.com/repos/$owner/$repo/releases)
-            
-            jira_body=$(curl https://prashantb02.atlassian.net/rest/api/3/project/HP/versions -u "amitkumarbind130207@gmail.com:HHMHb7C0WQTXcdVwj80Z8C40" )
-            
-            Release_tag=$(echo "$release_json" | jq -r '.[0].tag_name')
-            Release_name=$(echo "$release_json" | jq -r '.[0].name')
-            Body=$(echo "$release_json" | jq -r '.[0].body')
-            Released_date=$(echo "$release_json" | jq -r '.[0].published_at')
-            Commit_branch_name=$(echo "$release_json" | jq -r '.[0].target_commitish')
-
-            jira_body_versions_name=$(echo "$  jira_body" | jq -r '.[0].name')
-            
-            echo "Release_tag: Latest Tag is : $Release_tag"
-            echo "Release_name: Latest Release Tag Name is : $Release_name"
-            echo "Body: Latest Release Tag Body is : $Body"
-            echo "Released_date: Timings are : $Released_date"
-            echo "Commit_branch_name: Branch triggered : $Commit_branch_name"
-
-            echo "jira_body_versions_name: Jira Version Name : $ jira_body_versions_name"
-      
-            echo ::set-output name=Release_tag::"$Release_tag"
-            echo ::set-output name=Release_name::"$Release_name"
-            echo ::set-output name=Body::"$Body"
-            echo ::set-output name=Released_date::"$Released_date"
-            echo ::set-output name=Commit_branch_name::"$Commit_branch_name"
-            
-            echo ::set-output name=jira_body_versions_name::"$jira_body_versions_name"
-            
-#            curl -X POST -H 'Content-type: application/json' --data "issues":["RD-5"], "data": {"releaseVersion":"v4.0.0"} https://automation.atlassian.com/pro/hooks/0539d97c488d25b325d53db2f4b0ff75d57520db
+          echo ::set-output name=Release_tag::"$Release_tag"
+          echo ::set-output name=Release_name::"$Release_name"
+          echo ::set-output name=Body::"$Body"
+          echo ::set-output name=Released_date::"$Released_date"
+          echo ::set-output name=Commit_branch_name::"$Commit_branch_name"
