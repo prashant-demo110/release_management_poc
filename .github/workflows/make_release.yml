@@ -12,9 +12,9 @@
         - name: Jira Login
           uses: atlassian/gajira-login@master
           env:
-            JIRA_BASE_URL: https://prashantb02.atlassian.net
-            JIRA_USER_EMAIL: amitkumarbind130207@gmail.com
-            JIRA_API_TOKEN: HHMHb7C0WQTXcdVwj80Z8C40
+            JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+            JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+            JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN_AMIT }}
 
 
         - name: Example of consumption of the output
